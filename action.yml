@@ -1,6 +1,6 @@
-name: "vipm-BuildViPackage"
+name: "DownloadPackageFromNevstopFTP"
 author: "NEVSTOP"
-description: "CICD Action for build VIPM package file"
+description: "use [lvcicd](https://github.com/LV-APT/lvCICD/) to download vipm package file from nevstop-lab."
 branding:
   icon: "anchor"
   color: "green"
@@ -14,14 +14,26 @@ inputs:
     description: "32bit/64bit Version of LabVIEW Used"
     required: false
     default: "x86"
-  VipbPath:
-    description: "vipb File Path, if it's a folder, use the first matched vipb file to build."
-    required: false
+  NEVSTOP-FTP-IP:
+    description: "ip of FTP"
+    required: true
     default: ""
-  Install:
-    description: "YES/NO, NO as default"
-    required: false
-    default: "NO"
+  NEVSTOP-FTP-PORT:
+    description: "PORT of FTP"
+    required: true
+    default: ""
+  NEVSTOP-FTP-USER:
+    description: "USER of FTP"
+    required: true
+    default: ""
+  NEVSTOP-FTP-PASSWORDS:
+    description: "PASSWORDS of FTP"
+    required: true
+    default: ""
+  PackageName:
+    description: "PackageName"
+    required: true
+    default: ""
 
 outputs:
   vipPathName:
@@ -43,9 +55,13 @@ runs:
       with:
         LabVIEW_Version: ${{ inputs.LabVIEW_Version }}
         Architecture: ${{ inputs.Architecture }}
-        Operation: vipm_BuildDailyVIP
-        Parameter1: ${{ inputs.VipbPath }}
-        Parameter2: ${{ inputs.Install }}
+        OperationVIFolder: "${{ ENV.GITHUB_ACTION_PATH }}/lvscript"
+        Operation: DownloadPackageFromNevstopFTP
+        Parameter1: ${{ inputs.NEVSTOP-FTP-IP }}
+        Parameter2: ${{ inputs.NEVSTOP-FTP-PORT }}
+        Parameter3: ${{ inputs.NEVSTOP-FTP-USER }}
+        Parameter4: ${{ inputs.NEVSTOP-FTP-PASSWORDS }}
+        Parameter5: ${{ inputs.PackageName }}
 
     - id: vip-name
       run: |
