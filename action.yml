@@ -55,7 +55,7 @@ runs:
       with:
         LabVIEW_Version: ${{ inputs.LabVIEW_Version }}
         Architecture: ${{ inputs.Architecture }}
-        OperationVIFolder: "${{ ENV.GITHUB_ACTION_PATH }}/lvscript"
+        OperationVIFolder: "${{ GITHUB_ACTION_PATH }}/lvscript"
         Operation: DownloadPackageFromNevstopFTP
         Parameter1: ${{ inputs.NEVSTOP-FTP-IP }}
         Parameter2: ${{ inputs.NEVSTOP-FTP-PORT }}
