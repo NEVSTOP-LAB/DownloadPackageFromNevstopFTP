@@ -24,12 +24,12 @@ inputs:
     default: ""
   NEVSTOP-FTP-USER:
     description: "USER of FTP"
-    required: true
-    default: ""
+    required: false
+    default: "anonymous"
   NEVSTOP-FTP-PASSWORDS:
     description: "PASSWORDS of FTP"
     required: true
-    default: ""
+    default: "anonymous"
   PackageName:
     description: "PackageName"
     required: true
