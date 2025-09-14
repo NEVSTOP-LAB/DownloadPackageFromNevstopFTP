@@ -66,8 +66,8 @@ runs:
     - id: vip-name
       run: |
         $vipPath=Split-Path -Path ${{ steps.build-vip.outputs.Result }} -Parent;
-        Write-Host "::set-output name=vipPath::"$vipPath""
+        echo "vipPath=$vipPath" >> $env:GITHUB_OUTPUT
         $vipName=Split-Path -Path ${{ steps.build-vip.outputs.Result }} -Leaf;
-        Write-Host "::set-output name=vipName::"$vipName""
+        echo "vipName=$vipName" >> $env:GITHUB_OUTPUT
       shell: powershell
 
